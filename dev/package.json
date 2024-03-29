@@ -2,7 +2,7 @@
   "name": "squint-demo",
   "private": true,
   "scripts": {
-    "dev": "vite --force",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },

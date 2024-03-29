@@ -2,16 +2,21 @@
 
 A Squint plugin for [Vite](https://vitejs.dev/). Very early in it's development.
 
-To play around with the demo, you can do the following:
-
+## Demos
+### React + Squint + Vite
+This is the vite + react template with squint added. To play around with it:
 ```sh
-cd demo/
-# dev mode
+cd demo/react
+# install dependencies
+npm i
+# run dev mode
 npm run dev
-# build and preview
+# run build
 npm run build
+# run preview
 npm run preview
 ```
+
 
 #### Currently unsupported / TODO
 
