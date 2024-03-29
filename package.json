@@ -1,0 +1,28 @@
+{
+  "name": "vite-plugin-squint",
+  "version": "0.0.0",
+  "description": "A Vite plugin to compile squint-cljs",
+  "author": "",
+  "license": "",
+  "repository": "https://github.com/squint-cljs/vite-plugin-squint",
+  "type":"module",
+  "main": "index.mjs",
+  "files": [],
+  "scripts": {},
+  "peerDependencies": {
+    "vite": ">2.0.0-0"
+  },
+  "dependencies": {
+    "squint-cljs": "^0.7.98"
+  },
+  "devDependencies": {
+    "vite": "latest"
+  },
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "cljs",
+    "clojurescript",
+    "squint-cljs"
+  ]
+}
