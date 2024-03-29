@@ -6,15 +6,14 @@ To play around with the demo, you can do the following:
 
 ```sh
 cd demo/
-yarn vite build
-yarn vite preview
+# dev mode
+npm run dev
+# build and preview
+npm run build
+npm run preview
 ```
-
-`vite build` can also be ran with `--watch`.
-
 
 #### Currently unsupported / TODO
 
 - [ ] `vite dev` / Hot-Module-Reloading (HMR)
 - [ ] Squint Macros
-

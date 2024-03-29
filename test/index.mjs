@@ -5,6 +5,7 @@ export default function viteSquint(opts = {}) {
   const squint = {
     name: "squint_compile",
     transform: function (src, id) {
+      console.log("transform new 4", id);
       if (/\.cljs$/.test(id)) {
         var jsx = compileString(src);
         var js = esbuild.transformSync(jsx, { loader: "jsx" }).code;
