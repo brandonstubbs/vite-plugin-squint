@@ -1,15 +1,23 @@
 import { compileString } from "squint-cljs";
 import esbuild from "esbuild";
 
-export default {
-  name: "squint_compile",
-  transform: function (src, id) {
-    if (/\.cljs$/.test(id)) {
-      var jsx = compileString(src);
-      var js = esbuild.transformSync(jsx, { loader: "jsx" }).code;
-      // TODO handle warnings from esbuild transform
-      return { code: js, map: null };
-    }
-  },
-};
-
+// TODO: squint source mapping
+export default function viteSquint(opts = {}) {
+  const squint = {
+    name: "squint_compile",
+    transform: function (code, id) {
+      if (/\.cljs$/.test(id)) {
+        const cs = compileString(code);
+        const jsx = esbuild.transformSync(cs, {
+          loader: "jsx",
+          jsx: "automatic",
+        });
+        return {
+          code: jsx.code,
+          map: null,
+        };
+      }
+    },
+  };
+  return [squint];
+}
