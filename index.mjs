@@ -10,7 +10,7 @@ export default function viteSquint(opts = {}) {
         const cs = compileString(code);
         const jsx = esbuild.transformSync(cs, {
           loader: "jsx",
-          jsx: "automatic",
+          jsxFactory: "qwik.createElement",
         });
         return {
           code: jsx.code,
