@@ -16,8 +16,8 @@
             [:img {:src solid-logo :className "logo solid" :alt "Solid logo"}]]]
           [:h1 "Vite + Squint + Solid"]
           [:div {:className "card"}
-           [:button {:onClick #(set-count (inc count))}
-            "count is " count]
+           [:button {:onClick #(set-count (inc (count)))}
+            "count is " (count)]
            [:p "Edit " [:code "src/App.cljs"] " and save to test HMR"]]
           [:p {:className "read-the-docs"}
            "Click on the Vite and Solid logos to learn more"]]))
