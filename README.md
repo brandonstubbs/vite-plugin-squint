@@ -3,6 +3,21 @@
 A Squint plugin for [Vite](https://vitejs.dev/). Very early in it's development.
 
 ## Demos
+### Squint + Vite (Vanilla)
+This is the vite vanilla template with javascript removed and squint added. To play around with it:
+```sh
+cd demo/vanilla
+# install dependencies
+npm i
+# run dev mode
+npm run dev
+# run build
+npm run build
+# run preview
+npm run preview
+```
+
+
 ### React + Squint + Vite
 This is the vite + react template with squint added. To play around with it:
 ```sh
@@ -30,6 +45,7 @@ npm run build
 # run preview
 npm run preview
 ```
+
 
 #### Currently unsupported / TODO
 
