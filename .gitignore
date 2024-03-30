@@ -27,5 +27,5 @@ dist-ssr
 *.sw?
 
 
-# demo package-locks
-demo/**/package-lock.json
+# all package-locks
+package-lock.json
