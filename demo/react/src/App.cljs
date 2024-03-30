@@ -18,7 +18,7 @@
           [:h1 "Vite + Squint + React"]
           [:div {:className "card"}
            [:button {:onClick #(set-count (inc count))}
-            "count is " count]
+            "counttt is " count]
            [:p "Edit " [:code "src/App.cljs"] " and save to test HMR"]]
           [:p {:className "read-the-docs"}
            "Click on the Vite and React logos to learn more"]]))
