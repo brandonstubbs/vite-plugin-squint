@@ -25,7 +25,14 @@ export default function viteSquint(opts = {}) {
         // append .jsx so that other plugins can pick it up
         const absolutePath = path.resolve(dirname(imported), id);
         if (options.scan) {
-          // this is a scan, return virtual module
+          // Vite supports the concept of virtual modules, which are not direct
+          // files on disk but dynamically generated contents that Vite and its
+          // plugins can work with. We return a virtual module identifier
+          // (prefixed with \0 to denote its virtual nature), we effectively
+          // communicate to Vite and other plugins in the ecosystem that the
+          // module is managed by the plugin and should be treated differently
+          // from regular file-based modules. As `.cljs.jsx` files are not real.
+          // https://vitejs.dev/guide/api-plugin#virtual-modules-convention
           return "\0" + absolutePath + ".jsx";
         }
         return absolutePath + ".jsx";
