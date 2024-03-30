@@ -18,12 +18,16 @@ export default function viteSquint(opts = {}) {
         return { code: compiled, map: null };
       }
     },
-    resolveId(id, imported) {
+    resolveId(id, imported, options) {
       if (/\.cljs$/.test(id)) {
         // For cljs files we need to do the following:
         // absolutize the path, this makes it easier for load and other plugins
         // append .jsx so that other plugins can pick it up
         const absolutePath = path.resolve(dirname(imported), id);
+        if (options.scan) {
+          // this is a scan, return virtual module
+          return "\0" + absolutePath + ".jsx";
+        }
         return absolutePath + ".jsx";
       }
     },
