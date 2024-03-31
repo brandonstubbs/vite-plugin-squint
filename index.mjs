@@ -18,12 +18,18 @@ export default function viteSquint(opts = {}) {
         return { code: compiled, map: null };
       }
     },
-    resolveId(id, imported, options) {
+    resolveId(id, importer, options) {
+      if (/\.cljs.jsx$/.test(id)) {
+        // Vite can prompt the plugin to resolve modules that it has already
+        // resolved. As we have already resolved the module and added the
+        // extension to the id we just need to return the absolute resolveId again.
+        return path.resolve(dirname(importer), id);
+      }
       if (/\.cljs$/.test(id)) {
         // For cljs files we need to do the following:
         // absolutize the path, this makes it easier for load and other plugins
         // append .jsx so that other plugins can pick it up
-        const absolutePath = path.resolve(dirname(imported), id);
+        const absolutePath = path.resolve(dirname(importer), id);
         if (options.scan) {
           // Vite supports the concept of virtual modules, which are not direct
           // files on disk but dynamically generated contents that Vite and its
