@@ -20,7 +20,9 @@ export default function viteSquint(opts = {}) {
     },
     resolveId(id, importer, options) {
       if (/\.cljs.jsx$/.test(id)) {
-        // other plugins might make us resolve ourselves
+        // Vite can prompt the plugin to resolve modules that it has already
+        // resolved. As we have already resolved the module and added the
+        // extension to the id we just need to return the absolute path.
         return path.resolve(dirname(importer), id);
       }
       if (/\.cljs$/.test(id)) {
