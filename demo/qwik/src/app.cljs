@@ -15,7 +15,7 @@
             [:img {:src qwik-logo :className "logo qwik" :alt "Qwik logo"}]]]
           [:h1 "Vite + Squint + Qwik"]
           [:div {:className "card"}
-           [:button {:onClick$ (fn ^:=> [] (set! (.-value count) (inc count)))}
+           [:button {:onClick$ (fn ^:=> [] (set! (.-value count) (inc (.-value count))))}
             "count is " (.-value count)]
            [:p "Edit " [:code "src/App.cljs"] " and save to test HMR"]]
           [:p {:className "read-the-docs"}
