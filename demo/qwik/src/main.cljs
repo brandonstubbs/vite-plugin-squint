@@ -4,4 +4,4 @@
             ["./app.cljs" :refer [App]]
             ["./index.css"]))
 
-(render #jsx[App] (js/document.getElementById "app"))
+(render (js/document.getElementById "app") #jsx[App])
