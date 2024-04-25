@@ -1,4 +1,4 @@
-import { compileString } from "squint-cljs";
+import { compileString } from "squint-cljs/compiler/node";
 import path, { dirname } from "path";
 import fs from "fs";
 
@@ -70,7 +70,7 @@ export default function viteSquint(opts = {}) {
         }
       }
     },
-    load(id) {
+    async load(id) {
       const infile = outfilemap[id];
       if (infile) {
         const stats = fs.statSync(infile);
@@ -82,9 +82,9 @@ export default function viteSquint(opts = {}) {
           // the squint compiler to compile the file and load the compiled file
           // and (future) source mapping.
           const code = fs.readFileSync(infile, "utf-8");
-          const compiled = compileString(code);
+          const compiled = await compileString(code, {"in-file": infile});
           fs.mkdirSync(dirname(id), { recursive: true });
-          fs.writeFileSync(id, compiled);
+          fs.writeFileSync(id, compiled.javascript);
           infileChangedMs[id] = stats.mtimeMs;
         }
         // load the file
