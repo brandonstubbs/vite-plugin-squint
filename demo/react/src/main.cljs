@@ -1,5 +1,5 @@
 (ns main
-  ;;(:require-macros ["./foo.cljs" :as foo])
+  ;;(:require-macros [foo :as foo])
   (:require ["react" :as React :refer [StrictMode]]
             ["react-dom/client" :as ReactDOM]
             ["@/App.cljs" :refer [App]] ;; alias
