@@ -43,16 +43,16 @@ export default function viteSquint(opts = {}) {
       if (!hasExtension(id)) {
         const resolveCljsFile = `${absPath}.cljs`;
         if (isFile(resolveCljsFile)) {
+          console.log("resolving import as cljs file", id);
           id = resolveCljsFile;
         }
       }
       // we resolve the `.cljs` file that we want to compile, to the `output-dir`+`filename.jsx`
       if (/\.cljs$/.test(id)) {
         const absPath = path.resolve(dirname(infile || importer), id);
-        const relPath = path
-          .relative(projectRoot, absPath)
-          .replace(/\.cljs$/, ".jsx");
+        const relPath = path.relative(projectRoot, absPath).replace(/\.cljs$/, ".jsx");
         const outPath = `${projectRoot}/${outputDir}/${relPath}`;
+        console.log("resolving cljs->jsx", absPath, outPath);
         // keep links from in to out files both ways.
         infilemap[absPath] = outPath;
         outfilemap[outPath] = absPath;
@@ -66,6 +66,7 @@ export default function viteSquint(opts = {}) {
       if (!/\.cljs$/.test(id) && infile) {
         const absPath = path.resolve(dirname(infile), id);
         if (isFile(absPath)) {
+          console.log("resolving import from", infile, "to absolute path", absPath);
           return absPath;
         }
       }
@@ -81,6 +82,7 @@ export default function viteSquint(opts = {}) {
           // instead of loading the source and compiling here, we would call
           // the squint compiler to compile the file and load the compiled file
           // and (future) source mapping.
+          console.log("compiling cljs file", infile);
           const code = fs.readFileSync(infile, "utf-8");
           const compiled = await compileString(code, {"in-file": infile});
           fs.mkdirSync(dirname(id), { recursive: true });
@@ -88,6 +90,7 @@ export default function viteSquint(opts = {}) {
           infileChangedMs[id] = stats.mtimeMs;
         }
         // load the file
+        console.log("loading compiled cljs file", id);
         const code = fs.readFileSync(id, "utf-8");
         return { code, map: null };
       }
@@ -100,6 +103,7 @@ export default function viteSquint(opts = {}) {
       if (outFile) {
         const module = server.moduleGraph.getModuleById(outFile);
         if (module) {
+          console.log("HMR triggered by", file, "updating", outFile);
           // invalidate dependants
           server.moduleGraph.onFileChange(outFile);
           // hot reload
