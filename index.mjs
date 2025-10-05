@@ -13,6 +13,7 @@ export default function viteSquint(opts = {}) {
         // TODO: macros
         // TODO: squint source mapping
         const file = id.replace(/.jsx$/, "");
+        this.addWatchFile(file);
         const code = await fs.promises.readFile(file, "utf-8");
         const compiled = compileString(code);
         return { code: compiled, map: null };
